@@ -20,7 +20,9 @@ namespace Smartsheet.Api.Internal
 {
 
 
-	using Comment = Api.Models.Comment;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using System.Collections.Generic;
+    using Comment = Api.Models.Comment;
 
 	/// <summary>
 	/// This is the implementation of the CommentResources.
@@ -66,7 +68,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual Comment GetComment(long id)
 		{
-			return this.GetResource<Comment>("comment/" + id, typeof(Comment));
+            return this.GetResource<Comment>("comment/" + id, typeof(Comment), new Params());
 		}
 
 		/// <summary>

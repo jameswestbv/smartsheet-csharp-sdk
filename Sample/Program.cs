@@ -4,6 +4,7 @@ using Smartsheet.Api.OAuth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace sdk_csharp_sample
 {
@@ -47,24 +48,135 @@ namespace sdk_csharp_sample
 			// Save the token or use it.
 		}
 
+
+
+        private static void ProcessSheet(long id)
+        {
+
+            Sheet sheet = smartsheet.Sheets().GetSheet(id, new ObjectInclusion[] { ObjectInclusion.TEMPLATES, ObjectInclusion.COLUMNS, ObjectInclusion.DATA });
+                  
+            foreach (Column col in sheet.Columns)
+            {
+              
+            }
+  
+            int rowCount = 0;
+
+            foreach (Row row in sheet.Rows)
+            {
+              
+                foreach (Cell cell in row.Cells)
+                {
+
+                    if (cell.Link != null)
+                    {
+                        Debug.WriteLine(String.Format("{0} \t ", cell.Link.Url));
+                    }
+
+                  
+                }
+             
+                rowCount++;
+
+            }
+
+          
+        }
+
+
+        private static void GetSheets(Folder folder, int depth)
+        {
+
+            int tmpDepth = depth;
+
+            for (int i = 0; i < tmpDepth; i++)
+                Debug.Write("\t");
+        
+            Debug.WriteLine(String.Format("\t FOLDER: {0}", folder.Name));
+
+            // List Sheets in workspace...
+            if (folder.Sheets != null)
+            {
+
+                foreach (Sheet sheet in folder.Sheets)
+                {
+                    for (int i = 0; i < tmpDepth; i++)
+                         Debug.Write("\t");
+                  
+                    Debug.WriteLine(String.Format("\t\t SHEET: {0} ({1})", sheet.Name, sheet.ID.Value));
+
+                    ProcessSheet(sheet.ID.Value);
+
+
+                }
+
+            }
+
+            // Keep on walking...
+            if (folder.Folders != null)
+            {
+
+                tmpDepth = tmpDepth + 1;
+
+                foreach (Folder f in folder.Folders)
+                {
+                    GetSheets(f, tmpDepth);
+                }
+               
+            }
+
+        }
+
+        static SmartsheetClient smartsheet;
+
 		public static void SampleCode()
 		{
 			// Set the Access Token
 			Token token = new Token();
-			token.AccessToken = "YOUR_TOKEN";
+            token.AccessToken = "TOKEN";
 
 			// Use the Smartsheet Builder to create a Smartsheet
-			SmartsheetClient smartsheet = new SmartsheetBuilder().SetAccessToken(token.AccessToken).Build();
+			smartsheet = new SmartsheetBuilder().SetAccessToken(token.AccessToken).Build();
 
 			// Get home
 			Home home = smartsheet.Home().GetHome(new ObjectInclusion[] { ObjectInclusion.TEMPLATES });
+          
+            // List Workspaces
+            IList<Workspace> workspaces = smartsheet.Workspaces().ListWorkspaces(true);
 
-			// List home folders
-			IList<Folder> homeFolders = home.Folders;
-			foreach (Folder tmpFolder in homeFolders)
-			{
-				Console.WriteLine("folder:" + tmpFolder.Name);
-			}
+            foreach (Workspace workspace in workspaces)
+            {
+
+                Debug.WriteLine(String.Format("WorkSpace: {0}", workspace.Name));
+
+                // List Folders in workspace...
+
+                Workspace ws = smartsheet.Workspaces().GetWorkspace(workspace.ID.Value, true);
+
+                if (ws.Folders != null)
+                {
+
+                    foreach (Folder folder in ws.Folders)
+                    {
+                        GetSheets(folder,0);
+                       
+                    }
+
+                }
+                                           
+
+            }
+
+            Console.WriteLine("Done");
+
+            Console.ReadKey();
+
+            // List home folders
+            //IList<Folder> homeFolders = home.Folders;
+            //foreach (Folder tmpFolder in homeFolders)
+            //{
+            //    Console.WriteLine("folder:" + tmpFolder.Name);
+            //}
 
 			//// List Sheets
 			//IList<Sheet> homeSheets = smartsheet.Sheets().ListSheets();

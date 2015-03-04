@@ -20,7 +20,9 @@ namespace Smartsheet.Api.Internal
 {
 
 
-	using Attachment = Api.Models.Attachment;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using System.Collections.Generic;
+    using Attachment = Api.Models.Attachment;
 
 	/// <summary>
 	/// This is the implementation of the AttachmentResources.
@@ -62,7 +64,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual Attachment GetAttachment(long id)
 		{
-			return this.GetResource<Attachment>("attachment/" + id, typeof(Attachment));
+            return this.GetResource<Attachment>("attachment/" + id, typeof(Attachment), new Params());
 		}
 
 		/// <summary>

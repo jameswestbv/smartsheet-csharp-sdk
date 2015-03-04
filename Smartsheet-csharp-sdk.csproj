@@ -96,6 +96,7 @@
     <Compile Include="main\Smartsheet\Api\Internal\Http\HttpMethod.cs" />
     <Compile Include="main\Smartsheet\Api\Internal\Http\HttpRequest.cs" />
     <Compile Include="main\Smartsheet\Api\Internal\Http\HttpResponse.cs" />
+    <Compile Include="main\Smartsheet\Api\Internal\Http\Params.cs" />
     <Compile Include="main\Smartsheet\Api\Internal\Json\ContractResolver.cs" />
     <Compile Include="main\Smartsheet\Api\Internal\Json\JsonEnumTypeConverter.cs" />
     <Compile Include="main\Smartsheet\Api\Internal\Json\JsonNetSerializer.cs" />

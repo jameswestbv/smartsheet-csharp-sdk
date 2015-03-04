@@ -32,6 +32,7 @@ namespace Smartsheet.Api.Internal
 	using System.IO;
 	using System.Net;
 	using System;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
 
 	/// <summary>
 	/// This is the implementation of the SheetResources.
@@ -107,7 +108,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual IList<Sheet> ListSheets()
 		{
-			return this.ListResources<Sheet>("sheets", typeof(Sheet));
+            return this.ListResources<Sheet>("sheets", typeof(Sheet), new Params());
 		}
 
 		/// <summary>
@@ -126,7 +127,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual IList<Sheet> ListOrganizationSheets()
 		{
-			return this.ListResources<Sheet>("users/sheets", typeof(Sheet));
+            return this.ListResources<Sheet>("users/sheets", typeof(Sheet), new Params());
 		}
 
 		/// <summary>
@@ -160,7 +161,7 @@ namespace Smartsheet.Api.Internal
 				}
 			}
 
-			return this.GetResource<Sheet>(path, typeof(Sheet));
+            return this.GetResource<Sheet>(path, typeof(Sheet), new Params());
 		}
 
 		/// <summary>
@@ -449,7 +450,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual int? GetSheetVersion(long id)
 		{
-			return this.GetResource<Sheet>("sheet/" + id + "/version", typeof(Sheet)).Version;
+            return this.GetResource<Sheet>("sheet/" + id + "/version", typeof(Sheet), new Params()).Version;
 		}
 
 		/// <summary>
@@ -541,7 +542,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual SheetPublish GetPublishStatus(long id)
 		{
-			return this.GetResource<SheetPublish>("sheet/" + id + "/publish", typeof(SheetPublish));
+            return this.GetResource<SheetPublish>("sheet/" + id + "/publish", typeof(SheetPublish), new Params());
 		}
 
 		/// <summary>

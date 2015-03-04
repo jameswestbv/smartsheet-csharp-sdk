@@ -22,7 +22,8 @@ namespace Smartsheet.Api.Internal
 {
 
 
-	using Folder = Api.Models.Folder;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using Folder = Api.Models.Folder;
 
 	/// <summary>
 	/// This is the implementation of the HomeFolderResources.
@@ -59,7 +60,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual IList<Folder> ListFolders()
 		{
-			return this.ListResources<Folder>("home/folders", typeof(Folder));
+			return this.ListResources<Folder>("home/folders", typeof(Folder), new Params());
 		}
 
 		/// <summary>

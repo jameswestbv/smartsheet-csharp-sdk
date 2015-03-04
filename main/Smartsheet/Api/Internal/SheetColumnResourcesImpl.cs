@@ -20,7 +20,8 @@ using System.Collections.Generic;
 
 namespace Smartsheet.Api.Internal
 {
-	using Column = Api.Models.Column;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using Column = Api.Models.Column;
 
 	/// <summary>
 	/// This is the implementation of the SheetColumnResources.
@@ -58,7 +59,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual IList<Column> ListColumns(long sheetId)
 		{
-			return this.ListResources<Column>("sheet/" + sheetId + "/columns", typeof(Column));
+            return this.ListResources<Column>("sheet/" + sheetId + "/columns", typeof(Column), new Params());
 		}
 
 		/// <summary>

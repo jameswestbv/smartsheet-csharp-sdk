@@ -20,8 +20,9 @@ using System.Collections.Generic;
 
 namespace Smartsheet.Api.Internal
 {
-	using MultiShare = Api.Models.MultiShare;
-	using Share = Api.Models.Share;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using MultiShare = Api.Models.MultiShare;
+    using Share = Api.Models.Share;
 
 	/// <summary>
 	/// This is the implementation of the ShareResources.
@@ -60,7 +61,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual IList<Share> ListShares(long objectId)
 		{
-			return this.ListResources<Share>(MasterResourceType + "/" + objectId + "/shares", typeof(Share));
+            return this.ListResources<Share>(MasterResourceType + "/" + objectId + "/shares", typeof(Share), new Params());
 		}
 
 		/// <summary>
@@ -84,7 +85,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual Share GetShare(long objectId, long userId)
 		{
-			return this.GetResource<Share>(MasterResourceType + "/" + objectId + "/share/" + userId, typeof(Share));
+            return this.GetResource<Share>(MasterResourceType + "/" + objectId + "/share/" + userId, typeof(Share), new Params());
 		}
 
 		/// <summary>

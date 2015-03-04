@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Text;
 using Smartsheet.Api.Internal.Utility;
 using Smartsheet.Api.Models;
+using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
 
 namespace Smartsheet.Api.Internal
 {
@@ -74,7 +75,7 @@ namespace Smartsheet.Api.Internal
 				queryStringBuilder.AddParameter(IncludeParameterName, FormatIncludeValue(includes));
 				path.Append(queryStringBuilder.QueryString);
 			}
-			return GetResource<Report>(path.ToString(), typeof (Report));
+            return GetResource<Report>(path.ToString(), typeof(Report), new Params());
 		}
 
 
@@ -113,7 +114,7 @@ namespace Smartsheet.Api.Internal
 			}
 			queryStringBuilder.AddParameter(PageSizeParameterName, pageSize);
 			path.Append(queryStringBuilder.QueryString);
-			return GetResource<Report>(path.ToString(), typeof (Report));
+            return GetResource<Report>(path.ToString(), typeof(Report), new Params());
 		}
 
 
@@ -160,7 +161,7 @@ namespace Smartsheet.Api.Internal
 			queryStringBuilder.AddParameter(PageSizeParameterName, pageSize);
 			queryStringBuilder.AddParameter(PageNumberParameterName, pageNo);
 			path.Append(queryStringBuilder.QueryString);
-			return GetResource<Report>(path.ToString(), typeof (Report));
+            return GetResource<Report>(path.ToString(), typeof(Report), new Params());
 		}
 
 		private static StringBuilder GetReportUri(long id)

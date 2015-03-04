@@ -122,6 +122,7 @@ namespace Smartsheet.Api.Internal.Http
 				}
 			}
 
+            // Set any Parameters
 			if (smartsheetRequest.Entity != null && smartsheetRequest.Entity.GetContent() != null)
 			{
 				restRequest.AddParameter("application/json", Util.ReadAllBytes(smartsheetRequest.Entity.GetBinaryContent()),
@@ -130,6 +131,16 @@ namespace Smartsheet.Api.Internal.Http
 
 			// Set the client base Url.
 			httpClient.BaseUrl = smartsheetRequest.Uri.GetLeftPart(UriPartial.Authority);
+
+            if (smartsheetRequest.Parameters.Parameters != null)
+            {
+                foreach (KeyValuePair<string, string> kvp in smartsheetRequest.Parameters.Parameters)
+                {
+                    restRequest.AddParameter(kvp.Key, kvp.Value);
+                }
+            }
+
+         
 
 			// Make the HTTP request
 			restResponse = httpClient.Execute(restRequest);
@@ -156,6 +167,7 @@ namespace Smartsheet.Api.Internal.Http
 
 				entity.Content = restResponse.RawBytes;
 				smartsheetResponse.Entity = entity;
+
 			}
 
 			return smartsheetResponse;

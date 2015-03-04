@@ -33,6 +33,7 @@ namespace Smartsheet.Api.Internal
 	using System.Net;
 	using System.Text;
 	using System;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
 
 	/// <summary>
 	/// This is the implementation of the AssociatedAttachmentResources.
@@ -73,7 +74,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual IList<Attachment> ListAttachments(long objectId)
 		{
-				return this.ListResources<Attachment>(MasterResourceType + "/" + objectId + "/attachments", typeof(Attachment));
+            return this.ListResources<Attachment>(MasterResourceType + "/" + objectId + "/attachments", typeof(Attachment), new Params());
 		}
 
 		/// <summary>

@@ -19,9 +19,10 @@
 namespace Smartsheet.Api.Internal
 {
 
-	using System.Collections.Generic;
-	using Home = Api.Models.Home;
-	using ObjectInclusion = Api.Models.ObjectInclusion;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using System.Collections.Generic;
+    using Home = Api.Models.Home;
+    using ObjectInclusion = Api.Models.ObjectInclusion;
 
 	/// <summary>
 	/// This is the implementation of the HomeResources.
@@ -80,7 +81,7 @@ namespace Smartsheet.Api.Internal
 					 path.TrimEnd(',');
 			}
 
-			return this.GetResource<Home>(path, typeof(Home));
+            return this.GetResource<Home>(path, typeof(Home), new Params());
 		}
 
 		/// <summary>

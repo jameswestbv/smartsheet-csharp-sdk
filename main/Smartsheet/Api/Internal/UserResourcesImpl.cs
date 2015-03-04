@@ -22,8 +22,9 @@ namespace Smartsheet.Api.Internal
 {
 
 
-	using User = Api.Models.User;
-	using UserProfile = Api.Models.UserProfile;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using User = Api.Models.User;
+    using UserProfile = Api.Models.UserProfile;
 
 	/// <summary>
 	/// This is the implementation of the UserResources.
@@ -59,7 +60,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual IList<User> ListUsers()
 		{
-			return this.ListResources<User>("users", typeof(User));
+			return this.ListResources<User>("users", typeof(User), new Params());
 		}
 
 		/// <summary>
@@ -127,7 +128,7 @@ namespace Smartsheet.Api.Internal
 		{
 			get
 			{
-				return this.GetResource<UserProfile>("user/me", typeof(UserProfile));
+                return this.GetResource<UserProfile>("user/me", typeof(UserProfile), new Params());
 			}
 		}
 

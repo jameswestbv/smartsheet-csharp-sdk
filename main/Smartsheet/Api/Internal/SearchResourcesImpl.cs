@@ -19,9 +19,9 @@
 namespace Smartsheet.Api.Internal
 {
 
-	 using System;
-
-	 using SearchResult = Api.Models.SearchResult;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using System;
+    using SearchResult = Api.Models.SearchResult;
 
 	/// <summary>
 	/// This is the implementation of the SearchResources.
@@ -60,7 +60,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual SearchResult Search(string query)
 		{
-			return this.GetResource<SearchResult>("search?query=" + Uri.EscapeDataString(query), typeof(SearchResult));
+			return this.GetResource<SearchResult>("search?query=" + Uri.EscapeDataString(query), typeof(SearchResult), new Params());
 		}
 
 		/// <summary>
@@ -85,7 +85,7 @@ namespace Smartsheet.Api.Internal
 		public virtual SearchResult SearchSheet(long sheetId, string query)
 		{
 			return this.GetResource<SearchResult>("search/sheet/" + sheetId + "?query=" + Uri.EscapeDataString(query),
-					typeof(SearchResult));
+                    typeof(SearchResult), new Params());
 		}
 	}
 

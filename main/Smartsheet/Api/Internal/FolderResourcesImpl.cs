@@ -20,7 +20,8 @@ using System.Collections.Generic;
 
 namespace Smartsheet.Api.Internal
 {
-	using Folder = Api.Models.Folder;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using Folder = Api.Models.Folder;
 
 	/// <summary>
 	/// This is the implementation of the FolderResources.
@@ -61,7 +62,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual Folder GetFolder(long folderId)
 		{
-			return this.GetResource<Folder>("folder/" + folderId, typeof(Folder));
+            return this.GetResource<Folder>("folder/" + folderId, typeof(Folder), new Params());
 		}
 
 		/// <summary>
@@ -130,7 +131,7 @@ namespace Smartsheet.Api.Internal
 		public virtual IList<Folder> ListFolders(long parentFolderId)
 		{
 
-			return this.ListResources<Folder>("folder/" + parentFolderId + "/folders", typeof(Folder));
+            return this.ListResources<Folder>("folder/" + parentFolderId + "/folders", typeof(Folder), new Params());
 		}
 
 		/// <summary>

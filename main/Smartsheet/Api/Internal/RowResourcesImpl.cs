@@ -20,12 +20,13 @@ using System.Collections.Generic;
 
 namespace Smartsheet.Api.Internal
 {
-	using Cell = Api.Models.Cell;
-	using CellHistory = Api.Models.CellHistory;
-	using ObjectInclusion = Api.Models.ObjectInclusion;
-	using Row = Api.Models.Row;
-	using RowEmail = Api.Models.RowEmail;
-	using RowWrapper = Api.Models.RowWrapper;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using Cell = Api.Models.Cell;
+    using CellHistory = Api.Models.CellHistory;
+    using ObjectInclusion = Api.Models.ObjectInclusion;
+    using Row = Api.Models.Row;
+    using RowEmail = Api.Models.RowEmail;
+    using RowWrapper = Api.Models.RowWrapper;
 
 	/// <summary>
 	/// This is the implementation of the RowResources.
@@ -90,7 +91,7 @@ namespace Smartsheet.Api.Internal
 				}
 			}
 
-			return this.GetResource<Row>(path, typeof(Row));
+			return this.GetResource<Row>(path, typeof(Row), new Params());
 		}
 
 		/// <summary>
@@ -212,7 +213,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual IList<CellHistory> GetCellHistory(long rowId, long columnId)
 		{
-			return this.ListResources<CellHistory>("row/" + rowId + "/column/" + columnId + "/history", typeof(CellHistory));
+            return this.ListResources<CellHistory>("row/" + rowId + "/column/" + columnId + "/history", typeof(CellHistory), new Params());
 		}
 
 		/// <summary>

@@ -17,6 +17,9 @@
 //    %[license]
 
 using System;
+using System.Collections.Generic;
+using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+
 namespace Smartsheet.Api.Internal.Http
 {
 
@@ -41,6 +44,8 @@ namespace Smartsheet.Api.Internal.Http
 		/// It has a pair of setter/getter (not shown on class diagram for brevity).
 		/// </summary>
 		private HttpMethod? method;
+
+        private Params _parameters;
 
 		/// <summary>
 		/// Gets the uri.
@@ -74,6 +79,22 @@ namespace Smartsheet.Api.Internal.Http
 				this.method = value;
 			}
 		}
+
+        /// <summary>
+        /// Gets the method.
+        /// </summary>
+        /// <returns> the method </returns>
+        public virtual Params Parameters
+        {
+            get
+            {
+                return _parameters;
+            }
+            set
+            {
+                this._parameters = value;
+            }
+        }
 
 	}
 

@@ -22,7 +22,8 @@ namespace Smartsheet.Api.Internal
 {
 
 
-	using Template = Api.Models.Template;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using Template = Api.Models.Template;
 
 	/// <summary>
 	/// This is the implementation of the TemplateResources.
@@ -58,7 +59,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual IList<Template> ListTemplates()
 		{
-			return this.ListResources<Template>("templates", typeof(Template));
+            return this.ListResources<Template>("templates", typeof(Template), new Params());
 		}
 	}
 

@@ -24,6 +24,7 @@ namespace Smartsheet.Api.Internal
 
     using Api.Internal.Json;
     using Api.Models;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
     using System.IO;
     using System.Net;
     using System.Text;
@@ -183,7 +184,7 @@ namespace Smartsheet.Api.Internal
         /// <param name="objectClass"> the object class </param>
         /// <returns> the resource </returns>
         /// <exception cref="SmartsheetException"> the SmartsheetClient exception </exception>
-        protected internal virtual T GetResource<T>(string path, Type objectClass)
+        protected internal virtual T GetResource<T>(string path, Type objectClass, Params options)
         {
             Utils.ThrowIfNull(path, objectClass);
 
@@ -204,9 +205,10 @@ namespace Smartsheet.Api.Internal
                 throw new SmartsheetException(e);
             }
 
+            request.Parameters = options;
+
             HttpResponse response = this.smartsheet.HttpClient.Request(request);
-
-
+            
             Object obj = null;
 
             switch (response.StatusCode)
@@ -359,8 +361,9 @@ namespace Smartsheet.Api.Internal
         /// <param name="objectClass"> the resource object class </param>
         /// <returns> the resources </returns>
         /// <exception cref="SmartsheetException"> if an error occurred during the operation </exception>
-        protected internal virtual IList<T> ListResources<T>(string path, Type objectClass)
+        protected internal virtual IList<T> ListResources<T>(string path, Type objectClass, Params options)
         {
+        
             Utils.ThrowIfNull(path, objectClass);
             Utils.ThrowIfEmpty(path);
 
@@ -373,6 +376,8 @@ namespace Smartsheet.Api.Internal
             {
                 throw new SmartsheetException(e);
             }
+
+            request.Parameters = options;
 
             HttpResponse response = this.smartsheet.HttpClient.Request(request);
 

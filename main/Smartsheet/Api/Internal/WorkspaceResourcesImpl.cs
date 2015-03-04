@@ -21,7 +21,8 @@ using System.Collections.Generic;
 namespace Smartsheet.Api.Internal
 {
 
-	using Workspace = Api.Models.Workspace;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using Workspace = Api.Models.Workspace;
 
 	/// <summary>
 	/// This is the implementation of the WorkspaceResources.
@@ -78,8 +79,21 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual IList<Workspace> ListWorkspaces()
 		{
-			return this.ListResources<Workspace>("workspaces", typeof(Workspace));
+            return ListWorkspaces(false);
 		}
+
+        public virtual IList<Workspace> ListWorkspaces(bool loadAll)
+        {
+
+            Params options = new Params();
+
+            if (loadAll)
+            {
+                options.Add("loadAll", "true");
+            }
+
+            return this.ListResources<Workspace>("workspaces", typeof(Workspace), options);
+        }
 
 		/// <summary>
 		/// Get a workspace.
@@ -106,8 +120,21 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual Workspace GetWorkspace(long id)
 		{
-			return this.GetResource<Workspace>("workspace/" + id, typeof(Workspace));
+            return GetWorkspace(id, false);
 		}
+
+        public virtual Workspace GetWorkspace(long id, bool loadAll)
+        {
+
+            Params options = new Params();
+
+            if (loadAll)
+            {
+                options.Add("loadAll", "true");
+            }
+
+            return this.GetResource<Workspace>("workspace/" + id, typeof(Workspace), options);
+        }
 
 		/// <summary>
 		/// Create a workspace.

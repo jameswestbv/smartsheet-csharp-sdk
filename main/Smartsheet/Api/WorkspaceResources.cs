@@ -46,6 +46,8 @@ namespace Smartsheet.Api
 		/// <exception cref="SmartsheetException"> if there is any other error during the operation </exception>
 		IList<Workspace> ListWorkspaces();
 
+        IList<Workspace> ListWorkspaces(bool loadAll);
+
 		/// <summary>
 		/// <para>Get a workspace.</para>
 		/// 
@@ -61,6 +63,8 @@ namespace Smartsheet.Api
 		/// <exception cref="ServiceUnavailableException"> if the REST API service is not available (possibly due To rate limiting) </exception>
 		/// <exception cref="SmartsheetException"> if there is any other error during the operation </exception>
 		Workspace GetWorkspace(long id);
+
+        Workspace GetWorkspace(long id, bool loadAll);
 
 		/// <summary>
 		/// <para>Create a workspace.</para>

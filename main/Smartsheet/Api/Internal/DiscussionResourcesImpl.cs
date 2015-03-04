@@ -20,8 +20,9 @@ namespace Smartsheet.Api.Internal
 {
 
 
-	using Comment = Api.Models.Comment;
-	using Discussion = Api.Models.Discussion;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using Comment = Api.Models.Comment;
+    using Discussion = Api.Models.Discussion;
 
 	/// <summary>
 	/// This is the implementation of the DiscussionResources.
@@ -70,7 +71,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual Discussion GetDiscussion(long id)
 		{
-			return this.GetResource<Discussion>("discussion/" + id, typeof(Discussion));
+            return this.GetResource<Discussion>("discussion/" + id, typeof(Discussion), new Params());
 		}
 
 		/// <summary>

@@ -22,8 +22,9 @@ namespace Smartsheet.Api.Internal
 {
 
 
-	using Row = Api.Models.Row;
-	using RowWrapper = Api.Models.RowWrapper;
+    using Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http;
+    using Row = Api.Models.Row;
+    using RowWrapper = Api.Models.RowWrapper;
 
 	/// <summary>
 	/// This is the implementation of the SheetRowResources.
@@ -92,7 +93,7 @@ namespace Smartsheet.Api.Internal
 		/// <exception cref="SmartsheetException"> the Smartsheet exception </exception>
 		public virtual Row GetRow(long id, int rowNumber)
 		{
-			return this.GetResource<Row>("sheet/" + id + "/row/" + rowNumber, typeof(Row));
+            return this.GetResource<Row>("sheet/" + id + "/row/" + rowNumber, typeof(Row), new Params());
 		}
 	}
 
