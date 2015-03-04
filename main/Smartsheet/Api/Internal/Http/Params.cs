@@ -7,16 +7,25 @@ namespace Smartsheet_csharp_sdk.main.Smartsheet.Api.Internal.Http
 {
     public class Params
     {
+
+        public List<KeyValuePair<string, string>> _parameters;
+
         public Params()
         {
-            Parameters = new List<KeyValuePair<string, string>>();
+            _parameters = new List<KeyValuePair<string, string>>();
         }
 
-        public List<KeyValuePair<string, string>> Parameters;
+        public List<KeyValuePair<string, string>> Parameters
+        {
+            get
+            {
+                return _parameters;
+            }
+        }
 
         public void Add(string key, string value)
         {
-            Parameters.Add(new KeyValuePair<string, string>(key, value)); 
+            _parameters.Add(new KeyValuePair<string, string>(key, value)); 
         }
 
     }

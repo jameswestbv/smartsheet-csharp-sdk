@@ -132,7 +132,7 @@ namespace Smartsheet.Api.Internal.Http
 			// Set the client base Url.
 			httpClient.BaseUrl = smartsheetRequest.Uri.GetLeftPart(UriPartial.Authority);
 
-            if (smartsheetRequest.Parameters.Parameters != null)
+            if (smartsheetRequest.Parameters != null)
             {
                 foreach (KeyValuePair<string, string> kvp in smartsheetRequest.Parameters.Parameters)
                 {
