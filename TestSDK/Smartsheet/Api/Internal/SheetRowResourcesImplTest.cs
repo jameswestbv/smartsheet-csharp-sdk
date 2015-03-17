@@ -7,7 +7,7 @@ namespace Smartsheet.Api.Internal
 	using DefaultHttpClient = Smartsheet.Api.Internal.Http.DefaultHttpClient;
 	using Cell = Smartsheet.Api.Models.Cell;
 	using Column = Smartsheet.Api.Models.Column;
-	using Link = Smartsheet.Api.Models.Link;
+	using Hyperlink = Smartsheet.Api.Models.Hyperlink;
 	using LinkType = Smartsheet.Api.Models.LinkType;
 	using Row = Smartsheet.Api.Models.Row;
 	using RowWrapper = Smartsheet.Api.Models.RowWrapper;
@@ -38,13 +38,13 @@ namespace Smartsheet.Api.Internal
 			cell.DisplayValue = "Testing";
 			cell.ColumnId = 8764071660021636L;
 			cell.RowId = 1234L;
-			Link link = new Link();
+			Hyperlink link = new Hyperlink();
 			link.Url = "http://google.com";
 			link.Type = LinkType.URL;
 			link.SheetId = 1234L;
 			link.ColumnId = 1234L;
 			link.RowId = 1234L;
-			cell.Link = link;
+			cell.Hyperlink = link;
 			cell.Formula = "=1+1";
 
 			// Create a row and add the cells to it.

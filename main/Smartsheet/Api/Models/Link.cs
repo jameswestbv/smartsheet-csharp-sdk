@@ -24,7 +24,7 @@ namespace Smartsheet.Api.Models
 	/// Represents the Link object. </summary>
 	/// <seealso href="http://help.Smartsheet.com/customer/portal/articles/518326-creating-hyperlinks-To-Sheets-websites">
 	/// Help Creating Hyperlinks To Sheets &amp; Websites</seealso>
-	public class Link
+	public class Hyperlink
 	{
 		/// <summary>
 		/// Represents the Link Type.

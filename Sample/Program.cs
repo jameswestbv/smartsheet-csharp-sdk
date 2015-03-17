@@ -68,9 +68,9 @@ namespace sdk_csharp_sample
                 foreach (Cell cell in row.Cells)
                 {
 
-                    if (cell.Link != null)
+                    if (cell.Hyperlink != null)
                     {
-                        Debug.WriteLine(String.Format("{0} \t ", cell.Link.Url));
+                        Debug.WriteLine(String.Format("{0} \t ", cell.Hyperlink.Url));
                     }
 
                   

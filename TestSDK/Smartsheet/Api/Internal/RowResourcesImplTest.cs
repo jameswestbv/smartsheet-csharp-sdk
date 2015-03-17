@@ -48,11 +48,11 @@ namespace Smartsheet.Api.Internal
 				GetValues(typeof(ObjectInclusion))));
 
 			Assert.True(row.Cells.Count == 1);
-			Assert.AreEqual("http://domain.com",row.Cells[0].Link.Url);
-			Assert.AreEqual(LinkType.URL,row.Cells[0].Link.Type);
-			Assert.Null(row.Cells[0].Link.SheetId);
-			Assert.Null(row.Cells[0].Link.ColumnId);
-			Assert.Null(row.Cells[0].Link.RowId);
+			Assert.AreEqual("http://domain.com",row.Cells[0].Hyperlink.Url);
+			Assert.AreEqual(LinkType.URL,row.Cells[0].Hyperlink.Type);
+			Assert.Null(row.Cells[0].Hyperlink.SheetId);
+			Assert.Null(row.Cells[0].Hyperlink.ColumnId);
+			Assert.Null(row.Cells[0].Hyperlink.RowId);
 			Assert.True(row.Columns.Count == 2);
 			Assert.True(row.AccessLevel == AccessLevel.OWNER);
 

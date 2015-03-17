@@ -55,7 +55,7 @@ namespace Smartsheet.Api.Models
 		/// <summary>
 		/// Represents the optional Link that a cell might have.
 		/// </summary>
-		private Link link;
+		private Hyperlink link;
 
 		/// <summary>
 		/// The Formula for the cell.
@@ -156,7 +156,7 @@ namespace Smartsheet.Api.Models
 		/// Gets the Link for this cell.
 		/// </summary>
 		/// <returns> the Link </returns>
-		public virtual Link Link
+		public virtual Hyperlink Hyperlink
 		{
 			get
 			{
